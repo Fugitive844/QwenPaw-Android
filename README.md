@@ -4,6 +4,8 @@ QwenPaw Android 是基于 [QwenPaw](https://github.com/agentscope-ai/QwenPaw) �
 
 支持 Android 8.0（API 26）及以上。公开版包名为 `cn.qwenpaw.android.open`，可以与个人版并存安装。
 
+公开版 **0.8.1**：[下载已签名 APK](https://app.gzsuy.vip/download/releases/24)。下载文件 SHA-256：`203b5409a86d516b0534cba0c278c6c3b9e1683813dfbacb82c228abb12bb084`；签名证书 SHA-256：`5c978fe946796168109911577c3b5ecb85ca4aa947039324dcf203e10615c7ee`。
+
 ## 功能
 
 | 范围 | 已实现功能 |

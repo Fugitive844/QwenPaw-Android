@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class UpdateReleaseTest {
     private JSONObject release(long code,String pkg) throws Exception {
         return new JSONObject().put("bundle_id",pkg).put("release_version","0.7.1").put("build_version",String.valueOf(code))
-            .put("size",12345).put("install_url","https://app.gzsuy.vip/android/1/download")
+            .put("size",12345).put("install_url",UpdateRelease.ORIGIN+"/android/1/download")
             .put("custom_fields",new JSONArray().put(new JSONObject().put("name","SHA256").put("value","a".repeat(64))));
     }
     private JSONObject response(JSONObject... items)throws Exception {return new JSONObject().put("releases",new JSONArray(items));}
@@ -59,11 +59,11 @@ public class UpdateReleaseTest {
         UpdateRelease.latest(response(release(13,"cn.qwenpaw.android").put("size",UpdateRelease.MAX_APK_BYTES+1)),"cn.qwenpaw.android",12);
     }
     @Test public void downloadMustUseTrustedHttpsOrigin() {
-        assertTrue(UpdateRelease.safeUrl("https://app.gzsuy.vip/a.apk"));
-        assertFalse(UpdateRelease.safeUrl("http://app.gzsuy.vip/a.apk"));
-        assertFalse(UpdateRelease.safeUrl("https://app.gzsuy.vip.evil.test/a.apk"));
+        assertTrue(UpdateRelease.safeUrl(UpdateRelease.ORIGIN+"/a.apk"));
+        assertFalse(UpdateRelease.safeUrl(UpdateRelease.ORIGIN.replace("https://","http://")+"/a.apk"));
+        assertFalse(UpdateRelease.safeUrl(UpdateRelease.ORIGIN+".evil.test/a.apk"));
         assertFalse(UpdateRelease.safeUrl("https://evil.test/a.apk"));
-        assertFalse(UpdateRelease.safeUrl("https://user@app.gzsuy.vip/a.apk"));
-        assertFalse(UpdateRelease.safeUrl("https://app.gzsuy.vip:444/a.apk"));
+        assertFalse(UpdateRelease.safeUrl(UpdateRelease.ORIGIN.replace("https://","https://user@")+"/a.apk"));
+        assertFalse(UpdateRelease.safeUrl(UpdateRelease.ORIGIN+":444/a.apk"));
     }
 }
