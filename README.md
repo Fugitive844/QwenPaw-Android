@@ -1,12 +1,14 @@
 # QwenPaw Android
 
+**语言：简体中文（当前） | [English](README.en.md)**
+
 QwenPaw Android 是基于 [QwenPaw](https://github.com/agentscope-ai/QwenPaw) 服务端协议开发的原生安卓客户端。它连接用户自己的 QwenPaw 服务，提供移动端对话、工作区管理和常用配置入口。客户端不包含 QwenPaw 服务端；首次使用时需要填写自己的服务器地址和账号。
 
 支持 Android 8.0（API 26）及以上。公开版包名为 `cn.qwenpaw.android.open`，可以与个人版并存安装。
 
-公开版 **0.8.1**：[GitHub Releases](https://github.com/Fugitive844/QwenPaw-Android/releases/tag/v0.8.1)（含已签名 APK），[Zealot 下载镜像](https://app.gzsuy.vip/download/releases/24)。APK SHA-256：`203b5409a86d516b0534cba0c278c6c3b9e1683813dfbacb82c228abb12bb084`；签名证书 SHA-256：`5c978fe946796168109911577c3b5ecb85ca4aa947039324dcf203e10615c7ee`。
+公开版 **1.0.0**：[GitHub Releases](https://github.com/Fugitive844/QwenPaw-Android/releases/tag/v1.0.0)（含已签名 APK），[Zealot 下载镜像](https://app.gzsuy.vip/download/releases/25)。APK SHA-256：`ef8a58eaad31d3276a7a040ac6ce463c53c4c2af243410e1d3af53819ada3ff4`；签名证书 SHA-256：`5c978fe946796168109911577c3b5ecb85ca4aa947039324dcf203e10615c7ee`。
 
-**服务端兼容性：**0.8.1 以 [QwenPaw v2.2.2-beta.3](https://github.com/agentscope-ai/QwenPaw/releases/tag/v2.2.2-beta.3) 为适配目标。其他 QwenPaw 版本的接口和功能兼容性不作保证，详见 [版本兼容说明](COMPATIBILITY.md)。
+**服务端兼容性：**1.0.0 以 [QwenPaw v2.2.2-beta.3](https://github.com/agentscope-ai/QwenPaw/releases/tag/v2.2.2-beta.3) 为适配目标。其他 QwenPaw 版本的接口和功能兼容性不作保证，详见 [版本兼容说明](COMPATIBILITY.md)。
 
 ## 功能
 

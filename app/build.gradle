@@ -14,8 +14,8 @@ android {
         applicationId appId
         minSdk 26
         targetSdk 35
-        versionCode = (project.findProperty('appVersionCode') ?: '24').toInteger()
-        versionName = (project.findProperty('appVersionName') ?: '0.7.12')
+        versionCode = (project.findProperty('appVersionCode') ?: '32').toInteger()
+        versionName = (project.findProperty('appVersionName') ?: '1.0.0')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         buildConfigField 'String', 'UPDATE_ORIGIN', quoted(updateOrigin)
         buildConfigField 'String', 'UPDATE_CHANNEL', quoted(updateChannel)
