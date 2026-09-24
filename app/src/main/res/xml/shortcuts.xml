@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut android:shortcutId="check_updates" android:enabled="true"
+        android:icon="@drawable/ic_paw"
+        android:shortcutShortLabel="@string/check_updates_short"
+        android:shortcutLongLabel="@string/check_updates_long">
+        <intent android:action="android.intent.action.VIEW"
+            android:targetPackage="@string/app_package"
+            android:targetClass="cn.qwenpaw.android.UpdateRecoveryActivity" />
+    </shortcut>
+</shortcuts>

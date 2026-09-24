@@ -1,0 +1,30 @@
+<resources>
+    <style name="AppTheme.Base" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="colorPrimary">#216653</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#E6F0EA</item>
+        <item name="colorOnPrimaryContainer">#184C3D</item>
+        <item name="colorSecondary">#587366</item>
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#202A26</item>
+        <item name="colorSurfaceVariant">#F0F3F0</item>
+        <item name="colorOnSurfaceVariant">#727C76</item>
+        <item name="colorOutline">#DCE3DD</item>
+        <item name="android:colorAccent">#216653</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">#FAFBF8</item>
+        <item name="android:statusBarColor">#FAFBF8</item>
+        <item name="android:navigationBarColor">#202A26</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="shapeAppearanceLargeComponent">@style/PawShape.Large</item>
+        <item name="shapeAppearanceMediumComponent">@style/PawShape.Medium</item>
+    </style>
+    <style name="PawShape.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerSize">28dp</item>
+    </style>
+    <style name="PawShape.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="AppTheme" parent="AppTheme.Base" />
+</resources>

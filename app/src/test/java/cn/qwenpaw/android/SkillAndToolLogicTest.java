@@ -1,0 +1,16 @@
+package cn.qwenpaw.android;
+
+import org.junit.Test;
+import org.json.*;
+import static org.junit.Assert.*;
+
+public class SkillAndToolLogicTest {
+    @Test public void tagsAreDeduplicatedAndBounded(){assertEquals("[\"a\",\"b\"]",SkillLogic.tags("a， b,a").toString());assertThrows(IllegalArgumentException.class,()->SkillLogic.tags("12345678901234567"));assertThrows(IllegalArgumentException.class,()->SkillLogic.tags("a,b,c,d,e,f,g,h,i"));}
+    @Test public void configMustBeAnObjectAndRetainsNestedSecrets(){JSONObject cfg=SkillLogic.config("{\"env\":{\"KEY\":\"***\"},\"future\":true}");assertTrue(cfg.optBoolean("future"));assertEquals("***",cfg.optJSONObject("env").optString("KEY"));assertThrows(IllegalArgumentException.class,()->SkillLogic.config("[]"));}
+    @Test public void validatesFrontmatterWithoutMatchingBodyKeys(){SkillLogic.validate("demo","---\nname: demo\ndescription: Example\n---\n# Hello");assertThrows(IllegalArgumentException.class,()->SkillLogic.validate("demo","---\nname: demo\n---\ndescription: only in body"));assertThrows(IllegalArgumentException.class,()->SkillLogic.validate("../demo","---\nname: demo\ndescription: Demo\n---"));}
+    @Test public void partialFailuresAndAutomationFailuresAreNeverReportedAsAllSuccess(){String batch=SkillLogic.result(Json.obj("results",Json.obj("safe",Json.obj("success",true),"blocked",Json.obj("success",false,"reason","security_scan_failed"))));assertTrue(batch.contains("safe：成功"));assertTrue(batch.contains("security_scan_failed"));String auto=SkillLogic.result(Json.obj("updated",true,"automation",Json.obj("sync_failed",Json.arr(Json.obj("skill","demo","detail","offline")))));assertTrue(auto.contains("offline"));}
+    @Test public void legacySystemSourceIsBuiltin(){assertTrue(SkillLogic.builtin(Json.obj("source","system")));assertTrue(SkillLogic.builtin(Json.obj("source","builtin:zh")));assertFalse(SkillLogic.builtin(Json.obj("source","customized")));}
+    @Test public void unchangedAutomationDoesNotResyncAndDisableKeepsTargetScope(){JSONObject current=Json.obj("source","builtin","auto_update",true,"auto_sync",true,"auto_sync_targets",Json.arr("a","b"));assertEquals(0,SkillLogic.automation(current,true,true,Json.arr("b","a")).length());JSONObject update=SkillLogic.automation(current,true,false,Json.arr("a","b"));assertFalse(update.has("auto_update"));assertFalse(update.optJSONObject("auto_sync").has("targets"));assertFalse(update.optJSONObject("auto_sync").optBoolean("enabled"));assertTrue(SkillLogic.automation(current,true,true,new JSONArray()).optJSONObject("auto_sync").isNull("targets"));}
+    @Test public void numbersRejectNonFiniteAndOutOfRangeButAllowOptionalEmpty(){JSONObject f=Json.obj("type","number","label","Timeout","min",1,"max",90);assertEquals(12d,(Double)ToolLogic.value(f,"12"),0);assertEquals(JSONObject.NULL,ToolLogic.value(f,""));for(String value:new String[]{"NaN","Infinity","0","91","abc"})assertThrows(IllegalArgumentException.class,()->ToolLogic.value(f,value));}
+    @Test public void webSearchNeverSendsAnotherProvidersKeyToKeylessProvider(){assertFalse(ToolLogic.webSearch("tavily","anysearch-secret").has("api_key"));assertEquals("***",ToolLogic.webSearch("anysearch","***").optString("api_key"));assertTrue(ToolLogic.webSearch("anysearch","").has("api_key"));}
+}

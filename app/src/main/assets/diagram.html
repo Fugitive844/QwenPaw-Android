@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src 'none'; connect-src 'none'; frame-src 'none';">
+<style>body{margin:0;padding:12px;background:#fff;color:#202a26;font-family:sans-serif}#diagram{overflow:auto}svg{max-width:100%;height:auto}#error{white-space:pre-wrap;color:#a52c38;font-size:14px}</style>
+<script>
+if(!Array.prototype.at)Array.prototype.at=function(i){i=Math.trunc(i)||0;return this[i<0?this.length+i:i];};
+if(!Object.hasOwn)Object.hasOwn=function(o,k){return Object.prototype.hasOwnProperty.call(o,k);};
+if(!String.prototype.replaceAll)String.prototype.replaceAll=function(a,b){return a instanceof RegExp?this.replace(a,b):this.split(a).join(b);};
+if(!Array.prototype.findLast)Array.prototype.findLast=function(f){for(var i=this.length-1;i>=0;i--)if(f(this[i],i,this))return this[i];};
+if(!Array.prototype.findLastIndex)Array.prototype.findLastIndex=function(f){for(var i=this.length-1;i>=0;i--)if(f(this[i],i,this))return i;return -1;};
+if(!window.structuredClone)window.structuredClone=function(o){return JSON.parse(JSON.stringify(o));};
+window.diagramErrors=[];window.addEventListener('error',function(e){window.diagramErrors.push(e.message);});
+</script><script src="mermaid.compat.js"></script></head><body><div id="diagram"></div><pre id="error"></pre>
+<script>
+mermaid.initialize({startOnLoad:false,securityLevel:'strict',maxTextSize:50000,maxEdges:500,theme:'base',themeVariables:{primaryColor:'#e6f0ea',primaryTextColor:'#202a26',primaryBorderColor:'#95b1a3',lineColor:'#727c76',secondaryColor:'#f0f3ee',tertiaryColor:'#fafbf8',fontFamily:'sans-serif'},flowchart:{htmlLabels:false},suppressErrorRendering:true});
+let revision=0;
+async function renderDiagram(source){
+  const current=++revision;
+  try {const result=await mermaid.render('diagram-'+current,source);if(current===revision){document.getElementById('diagram').innerHTML=result.svg;document.getElementById('error').textContent='';}}
+  catch(e){if(current===revision)document.getElementById('error').textContent='图表暂时无法渲染，请查看 Mermaid 源码。\n'+String(e.message||e);}
+}
+</script></body></html>
