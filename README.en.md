@@ -4,7 +4,7 @@
 
 QwenPaw Android is a native Android client based on the [QwenPaw](https://github.com/agentscope-ai/QwenPaw) server API. It connects to your own server for mobile chat, workspace management, and common settings. The server is not bundled; enter your server URL and account when you first sign in.
 
-The app supports Android 8.0 (API 26) and later. The public edition uses package ID `cn.qwenpaw.android.open` and can coexist with the maintainer's personal edition.
+The app supports Android 8.0 (API 26) and later. Its package ID is `cn.qwenpaw.android.open`.
 
 **Public release 1.0.0:** [GitHub Releases](https://github.com/Fugitive844/QwenPaw-Android/releases/tag/v1.0.0) or the [Zealot mirror](https://app.gzsuy.vip/download/releases/25). APK SHA-256: `ef8a58eaad31d3276a7a040ac6ce463c53c4c2af243410e1d3af53819ada3ff4`; signing certificate SHA-256: `5c978fe946796168109911577c3b5ecb85ca4aa947039324dcf203e10615c7ee`.
 

@@ -4,6 +4,12 @@ if (!(edition in ['public', 'personal'])) throw new GradleException('appEdition 
 def updateOrigin = (project.findProperty('appUpdateOrigin') ?: (edition == 'public' ? 'https://app.gzsuy.vip' : '')).toString()
 def updateChannel = (project.findProperty('appUpdateChannel') ?: '').toString()
 def defaultServer = (project.findProperty('appDefaultServer') ?: '').toString()
+def welcomePromptsPath = (project.findProperty('appWelcomePromptsFile') ?: '').toString().trim()
+def welcomePromptsFile = welcomePromptsPath ? file(welcomePromptsPath) : null
+if (welcomePromptsFile && edition != 'personal') throw new GradleException('appWelcomePromptsFile is only available for personal builds')
+if (welcomePromptsFile && !welcomePromptsFile.isFile()) throw new GradleException('appWelcomePromptsFile must point to an existing JSON file')
+if (welcomePromptsFile && welcomePromptsFile.name != 'welcome-prompts.json') throw new GradleException('appWelcomePromptsFile must be named welcome-prompts.json')
+if (welcomePromptsFile && welcomePromptsFile.parentFile.listFiles().toList() != [welcomePromptsFile]) throw new GradleException('appWelcomePromptsFile must be the only entry in its assets directory')
 def appId = edition == 'public' ? 'cn.qwenpaw.android.open' : 'cn.qwenpaw.android'
 def appLabel = edition == 'public' ? 'QwenPaw 开源版' : 'QwenPaw'
 def quoted = { String value -> '"' + value.replace('\\', '\\\\').replace('"', '\\"') + '"' }
@@ -46,6 +52,10 @@ android {
             minifyEnabled false
             if (System.getenv('QWENPAW_SIGN_STORE')) signingConfig signingConfigs.delivery
         }
+    }
+    if (welcomePromptsFile) {
+        sourceSets.debug.assets.srcDir(welcomePromptsFile.parentFile)
+        sourceSets.release.assets.srcDir(welcomePromptsFile.parentFile)
     }
 }
 dependencies {
