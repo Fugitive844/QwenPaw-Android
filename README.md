@@ -4,7 +4,9 @@ QwenPaw Android 是基于 [QwenPaw](https://github.com/agentscope-ai/QwenPaw) �
 
 支持 Android 8.0（API 26）及以上。公开版包名为 `cn.qwenpaw.android.open`，可以与个人版并存安装。
 
-公开版 **0.8.1**：[下载已签名 APK](https://app.gzsuy.vip/download/releases/24)。下载文件 SHA-256：`203b5409a86d516b0534cba0c278c6c3b9e1683813dfbacb82c228abb12bb084`；签名证书 SHA-256：`5c978fe946796168109911577c3b5ecb85ca4aa947039324dcf203e10615c7ee`。
+公开版 **0.8.1**：[GitHub Releases](https://github.com/Fugitive844/QwenPaw-Android/releases/tag/v0.8.1)（含已签名 APK），[Zealot 下载镜像](https://app.gzsuy.vip/download/releases/24)。APK SHA-256：`203b5409a86d516b0534cba0c278c6c3b9e1683813dfbacb82c228abb12bb084`；签名证书 SHA-256：`5c978fe946796168109911577c3b5ecb85ca4aa947039324dcf203e10615c7ee`。
+
+**服务端兼容性：**0.8.1 以 [QwenPaw v2.2.2-beta.3](https://github.com/agentscope-ai/QwenPaw/releases/tag/v2.2.2-beta.3) 为适配目标。其他 QwenPaw 版本的接口和功能兼容性不作保证，详见 [版本兼容说明](COMPATIBILITY.md)。
 
 ## 功能
 
@@ -51,3 +53,5 @@ QwenPaw Android 是基于 [QwenPaw](https://github.com/agentscope-ai/QwenPaw) �
 ## 项目关系与许可
 
 本仓库是独立的安卓客户端，基于 [QwenPaw](https://github.com/agentscope-ai/QwenPaw) 的接口与交互实现。QwenPaw 项目使用 Apache-2.0；本仓库原创代码采用 [0BSD](LICENSE)。复用的第三方资源分别遵循其原有许可，详见 [第三方声明](THIRD_PARTY_NOTICES.md) 与 `third_party` 目录。
+
+本项目是个人爱好项目，客户端原创代码和文档全程由 GPT-6 编写，后续也会使用 AI 更新。维护者不保证及时跟进 QwenPaw 新版本或处理问题；有兴趣的开发者可以 Fork 后自行维护，也欢迎提交 Pull Request。
